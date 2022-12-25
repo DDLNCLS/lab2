@@ -42,3 +42,29 @@
 | **id_msg** | INT  | NO | | Идентификатор поста |
 | **comm_txt** | TEXT | NO | | Текст комментария |
 | **time** | DATETIME | NO | | Дата написания комментария |
+
+### Значимые фрагменты кода
+
+Добавление комментария
+```
+<?php
+
+$db = mysqli_connect ("localhost","root","","forum");
+
+if(isset($_GET['comment']))
+{
+    if(isset($_GET['com']))
+    {
+        $id_msg = $_GET['com'];
+        $comment = $_GET['comment'];
+        $id = 0;
+        $sql = mysqli_query($db, "INSERT INTO comments (id, id_msg, msg, time) VALUES ('$id', '$id_msg', '$comment', NOW())");
+    }
+}
+
+header('Location: index.php');
+
+exit();
+
+?>
+```
